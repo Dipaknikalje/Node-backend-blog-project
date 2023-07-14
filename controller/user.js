@@ -16,6 +16,7 @@ const register = async (req, res) => {
   });
   if (user) {
     res.send({
+      status: "failed",
       msg: "user already exist",
     });
   } else {
@@ -39,10 +40,11 @@ const register = async (req, res) => {
       email: data.email,
       password: hashpassword,
       token: token,
+      status: "success",
     };
     storeData.push(tempobj);
     console.log(storeData);
-    res.send(storeData);
+    res.send(tempobj);
   }
 };
 const login = (req, res) => {
@@ -64,11 +66,13 @@ const login = (req, res) => {
       if (validate) {
         // console.log(token);
         return res.send({
+          status: "success",
           msg: "user login sucessfully!!!!",
-          token:token
+          token: token,
         });
       } else {
         res.send({
+          status: "failed",
           msg: "incorrect password or emailid",
         });
       }
@@ -76,6 +80,7 @@ const login = (req, res) => {
   });
   if (!user) {
     res.send({
+      status:"failure",
       msg: "user not registered, please registered before login or invalid mail id or password",
     });
   }
