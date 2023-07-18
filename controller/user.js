@@ -69,6 +69,7 @@ const login = (req, res) => {
           status: "success",
           msg: "user login sucessfully!!!!",
           token: token,
+          name:data.name,
         });
       } else {
         res.send({
