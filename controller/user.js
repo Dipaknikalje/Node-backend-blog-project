@@ -66,10 +66,11 @@ const login = (req, res) => {
       if (validate) {
         // console.log(token);
         return res.send({
+          name:data.name,
           status: "success",
           msg: "user login sucessfully!!!!",
           token: token,
-          name:data.name,
+          
         });
       } else {
         res.send({
